@@ -4,6 +4,8 @@
 
 **GharSaathi** is an easy-to-use home service platform that connects users with skilled professionals (plumbers, electricians, cleaners, etc.) for on-demand services. Our mission is to provide affordable, reliable, and accessible services to homeowners while offering workers a simple way to find job opportunities.
 
+**Try it out online**: [GharSaathi - Home Service Booking Platform](https://yashatgitt.github.io/GharSaathi/)
+
 ### Key Features:
 - **Instant & Scheduled Booking**: Book services immediately or schedule for later.
 - **Verified Workers**: All professionals are background-checked for safety.

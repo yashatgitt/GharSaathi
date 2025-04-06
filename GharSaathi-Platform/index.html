@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GharSaathi - On-Demand Home Services</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #EFFFFD;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #211C84,#4D55CC,#7A73D1,#B5A8D5);
+      color: #ffffff;
+      padding: 100px 20px 60px 20px;
+      text-align: center;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      animation: fadeInDown 1s ease;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 30px auto 0 auto;
+    }
+
+    .category-card,
+    .provider-card {
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .category-card:hover,
+    .provider-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      color: #0d6efd;
+    }
+
+    .provider-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .freelance-badge {
+      font-size: 0.8rem;
+      color: #20c997;
+      font-weight: bold;
+    }
+
+    .btn-main {
+      background-color: #6610f2;
+      color: #C6E7FF;
+      border-radius: 30px;
+    }
+
+    .modal-content {
+      border-radius: 1rem;
+    }
+
+    #searchInput::placeholder {
+      color: #6c757d;
+      transition: color 0.3s ease;
+    }
+
+    #searchInput:hover::placeholder {
+      color: #343a40;
+    }
+
+    #searchInput:focus::placeholder {
+      color: #0d6efd;
+    }
+
+    footer {
+      background-color: #343a40;
+      color: white;
+      padding: 40px 0;
+    }
+
+    footer a {
+      color: #ffffffcc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .social-icons i {
+      font-size: 1.4rem;
+      margin-right: 10px;
+      color: white;
+    }
+
+    .social-icons i:hover {
+      color: #0d6efd;
+    }
+    
+button {
+  position: relative;
+  padding: 12px 35px;
+  background: #fec195;
+  font-size: 17px;
+  font-weight: 500;
+  color: #181818;
+  border: 3px solid #fec195;
+  border-radius: 8px;
+  box-shadow: 0 0 0 #fec1958c;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+
+.star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+
+button:hover {
+  background: transparent;
+  color: #fec195;
+  box-shadow: 0 0 25px #fec1958c;
+}
+
+button:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+.fil0 {
+  fill: #fffdef;
+}
+#loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: #ffffff; /* black background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 1s ease; /* dissolve effect */
+    }
+
+    .loader {
+      display: block;
+      --height-of-loader: 8px; /* Increased height for visibility */
+      --loader-color: #0071e2; /* Set loader color */
+      width: 300px; /* Increased width for better visual size */
+      height: var(--height-of-loader);
+      border-radius: 30px;
+      background-color: rgba(255, 250, 250, 0.2); /* Slightly transparent background */
+      position: relative;
+    }
+
+    .loader::before {
+      content: "";
+      position: absolute;
+      background: var(--loader-color);
+      top: 0;
+      left: 0;
+      width: 0%; /* Start from 0% width */
+      height: 100%;
+      border-radius: 30px;
+      animation: moving 1s ease-in-out infinite;
+    }
+
+    @keyframes moving {
+      50% {
+        width: 100%; /* Expands to full width */
+      }
+
+      100% {
+        width: 0; /* Shrinks back to 0 */
+        right: 0;
+        left: unset;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+</div>
+
+  
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="#">GharSaathi</a>
+      <button class="navbar-toggler" type="" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#providers">Providers</a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#signupModal">
+              Sign Up
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to GharSaathi</h1>
+    <p>Your trusted platform for local home services & freelance workers</p>
+
+    <div class="search-bar input-group mt-4">
+      <input id="searchInput" type="text" class="form-control" placeholder="Search for cleaning...">
+      
+<button  onclick="window.location.href='herf.html'">
+  Search
+  <div class="star-1">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-3">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-5">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+  <div class="star-6">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xml:space="preserve"
+      version="1.1"
+      style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+      viewBox="0 0 784.11 815.53"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs></defs>
+      <g id="Layer_x0020_1">
+        <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+        <path
+          class="fil0"
+          d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+        ></path>
+      </g>
+    </svg>
+  </div>
+</button>
+
+    </div>
+
+    <a href="#services" class="btn btn-light mt-4">Explore Services</a>
+  </section>
+
+  <!-- Popular Services -->
+  <section id="services" class="container my-5">
+    <h2 class="text-center mb-4">Popular Services</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card category-card p-4 text-center">
+          <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,cleaning" alt="Cleaning" class="mb-3 rounded">
+          <i class="fas fa-broom category-icon mb-3"></i>
+          <h5>Home Cleaning</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card category-card p-4 text-center">
+          <img src="https://images.unsplash.com/photo-1676311396794-f14881e9daaa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Repairs" class="mb-3 rounded">
+          <i class="fas fa-tools category-icon mb-3"></i>
+          <h5>Repairs & Maintenance</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card category-card p-4 text-center">
+          <img src="https://plus.unsplash.com/premium_photo-1664298827256-04eb817aa0ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Painting" class="mb-3 rounded">
+          <i class="fas fa-paint-roller category-icon mb-3"></i>
+          <h5>Painting & Decorating</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Providers -->
+  <section id="providers" class="container my-5">
+    <h2 class="text-center mb-4">Featured Providers</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card provider-card">
+          <img src="https://media.istockphoto.com/id/533399455/photo/man-with-fan-rake-in-home-garden.jpg?s=1024x1024&w=is&k=20&c=iOWbxh6rxYNwPhP7fqYcah4fyXVBRFNTsFYM_Mgu3_M=" alt="Cleaner">
+          <div class="card-body">
+            <h5 class="card-title">Aman Sharma <span class="freelance-badge">Freelancer</span></h5>
+            <p class="card-text">Expert in deep home cleaning with 5+ years experience.</p>
+            <div class="rating text-warning">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card provider-card">
+          <img src="https://media.istockphoto.com/id/2162503303/photo/portrait-of-lectrical-engineer-on-construction-site.jpg?s=1024x1024&w=is&k=20&c=usIhDXQu57UwPY8vSkamwdL1vfqR4KxSA62-q186y2o=" alt="Electrician">
+          <div class="card-body">
+            <h5 class="card-title">Rohit Verma</h5>
+            <p class="card-text">Certified electrician for all your home wiring needs.</p>
+            <div class="rating text-warning">★★★★☆</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card provider-card">
+          <img src="https://plus.unsplash.com/premium_photo-1723532510760-6fdd11df62b0?q=80&w=1386&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,work" alt="Plumber">
+          <div class="card-body">
+            <h5 class="card-title">Neha Singh <span class="freelance-badge">Freelancer</span></h5>
+            <p class="card-text">Quick fixes and reliable plumbing services in your area.</p>
+            <div class="rating text-warning">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">What Our Users Say</h2>
+    <div id="reviewContainer" class="row g-4">
+      <!-- Reviews will appear here dynamically -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-4 mb-3">
+          <h5>GharSaathi</h5>
+          <p>Your trusted home service platform for cleaning, plumbing, repairs and more.</p>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#providers">Providers</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <h5>Contact</h5>
+          <p>Email: support@GharSaathi.com</p>
+          <p>Phone: +91 98765 43210</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <small>© 2025 GharSaathi. All Rights Reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sign Up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-4">
+        <h5 class="modal-title mb-3" id="signupModalLabel">Create Your Account</h5>
+        <form>
+          <div class="mb-3">
+            <label for="signupName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="signupName" placeholder="Your full name" required>
+          </div>
+          <div class="mb-3">
+            <label for="signupEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="signupEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="signupPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="signupPassword" placeholder="Create a password" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 1s ease'; // smooth dissolve
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 1000); // wait for dissolve to finish
+      }, 3000); // 5 second delay before dissolve
+    });
+  </script>
+  
+  
+
+  <script>
+    // Typing placeholder animation
+    const keywords = ["cleaning", "plumber", "electrician", "painter", "AC repair"];
+    let input = document.getElementById("searchInput");
+    let currentWord = 0;
+    let currentChar = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const word = keywords[currentWord];
+      if (isDeleting) currentChar--;
+      else currentChar++;
+
+      input.setAttribute("placeholder", `Search for ${word.substring(0, currentChar)}...`);
+
+      if (!isDeleting && currentChar === word.length) {
+        setTimeout(() => isDeleting = true, 1000);
+      } else if (isDeleting && currentChar === 0) {
+        isDeleting = false;
+        currentWord = (currentWord + 1) % keywords.length;
+      }
+
+      setTimeout(typeEffect, 100);
+    }
+
+    typeEffect();
+
+    // Reviews auto-rotator
+    const reviews = [
+      { name: "Ravi Kumar", text: "Amazing service! My home looks spotless." },
+      { name: "Priya Mehta", text: "The plumber arrived on time and fixed everything." },
+      { name: "Aman Joshi", text: "Very professional and friendly staff." },
+      { name: "Divya Shah", text: "Booking was easy and hassle-free!" },
+      { name: "Karan Patel", text: "Great platform for local services. Highly recommend!" },
+      { name: "Sneha Reddy", text: "Painter was super neat and fast." },
+      { name: "Arjun Kapoor", text: "Electrician solved a long-pending issue quickly." },
+      { name: "Meera Singh", text: "Affordable and reliable. Loved it!" },
+      { name: "Rajeev Menon", text: "Support team is responsive and helpful." }
+    ];
+
+    let currentIndex = 0;
+    const container = document.getElementById("reviewContainer");
+
+    function showReviews() {
+      container.innerHTML = "";
+      for (let i = 0; i < 3; i++) {
+        const review = reviews[(currentIndex + i) % reviews.length];
+        const col = document.createElement("div");
+        col.className = "col-md-4";
+        col.innerHTML = `
+          <div class="card h-100 p-3 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title">${review.name}</h5>
+              <p class="card-text">"${review.text}"</p>
+              <div class="text-warning">★★★★☆</div>
+            </div>
+          </div>
+        `;
+        container.appendChild(col);
+      }
+      currentIndex = (currentIndex + 3) % reviews.length;
+    }
+
+    showReviews();
+    setInterval(showReviews, 2000);
+  </script>
+</body>
+
+</html>

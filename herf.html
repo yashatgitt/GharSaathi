@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GharSaathi - Prototype</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #211C84, #4D55CC, #7A73D1, #B5A8D5);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .custom-tooltip-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-5px);
+    }
+
+    .custom-tooltip-btn {
+      transition: all 0.3s ease;
+    }
+
+    .custom-tooltip-content {
+      position: absolute;
+      bottom: 140%;
+      left: 50%;
+      transform: translateX(-50%);
+      visibility: hidden;
+      opacity: 0;
+      width: 260px;
+      background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      border-radius: 15px;
+      transition: all 0.4s ease;
+      z-index: 1;
+      box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.3);
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+    }
+
+    .custom-tooltip-container:hover .custom-tooltip-content {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    .custom-tooltip-arrow {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -10px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #007bff;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen text-center p-6 relative">
+
+  <!-- Main Container -->
+  <div class="bg-white bg-opacity-90 shadow-2xl rounded-2xl px-10 pt-8 pb-6 max-w-md w-full fade-in border border-gray-300 text-center -mt-16 flex flex-col justify-center items-center h-96">
+    <div class="text-4xl font-extrabold text-[#4D55CC] mb-3">
+      Under Construction !!!
+    </div>
+    <p class="text-gray-700 text-lg font-medium mb-2">
+      This is just a <span class="font-semibold text-[#4D55CC]">prototype</span> of the
+      <strong class="text-[#4D55CC]">GharSaathi</strong> platform.<br>
+      We’re working hard to bring you the full experience soon!
+    </p>
+    <div class="text-sm text-gray-600">
+      <span class="text-[#4D55CC] font-semibold">GharSaathi</span> © 2025. All rights reserved.
+    </div>
+  </div>
+
+  
+
+  <!-- Hover Tooltip -->
+  <div class="custom-tooltip-container fixed bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+    <button class="custom-tooltip-btn px-6 py-2 text-white font-bold bg-blue-600 rounded-lg shadow-lg">Hover me</button>
+    <div class="custom-tooltip-content">
+      <span class="custom-tooltip-arrow"></span>
+      <p class="custom-tooltip-text">
+      💙Yash Gangurde 📧:yash.gangurde001@gmail.com 📞: +91 7020808403
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
